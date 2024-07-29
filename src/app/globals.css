@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colores base */
+.bg-primary {
+  background-color: #f8f8f8;
+} /* Blanco (o #121212 para fondo oscuro) */
+.text-primary {
+  color: #212121;
+} /* Gris oscuro (o #EEEEEE para texto claro) */
+
+/* Colores de acento */
+.accent-blue {
+  color: #007bff;
+}
+.accent-yellow {
+  color: #ffc107;
+}
+.accent-green {
+  color: #28a745;
+}
+.accent-red {
+  color: #dc3545;
+}
+
+/* Botones */
+.btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+.btn-primary {
+  background-color: #5389c2; /* Azul */
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9; /* Azul más oscuro al pasar el ratón */
+  transform: translateY(-2px); /* Efecto de elevación sutil */
+}
+
+.btn-secondary {
+  background-color: #ffc107; /* Amarillo */
+  color: #212121; /* Texto oscuro sobre amarillo */
+}
+
+.btn-secondary:hover {
+  background-color: #ffa500; /* Amarillo más oscuro al pasar el ratón */
+  transform: translateY(-2px);
+}
+
+/* Otros botones (opcional) */
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/*Fonts*/
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*Colors*/
+
+.bg-primario {
+  background-color: #e0f7fa;
+}
+.bg-secundario {
+  background-color: #1f0e2f;
+}
+.text-primario {
+  color: #1f0e2f;
+}
+.text-secundario {
+  color: #e4e4b5;
+}
