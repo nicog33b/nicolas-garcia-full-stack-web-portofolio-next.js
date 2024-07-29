@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./GUI/navbarTop";
+import SocialIcons from "./GUI/socialIcons";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,11 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="bg-gradient-to-b from-[#E0F7FA] to-[#2C3E50] min-h-screen">
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          <Navbar></Navbar>
-          {children}
-        </div>
+      <body className="">
+        <SocialIcons></SocialIcons>
+        <Navbar></Navbar>
+        {children}
       </body>
     </html>
   );

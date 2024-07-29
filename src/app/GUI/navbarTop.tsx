@@ -1,55 +1,30 @@
-"use client";
-import React, { useState } from "react";
-import {
-  FaDownload,
-  FaProjectDiagram,
-  FaFlask,
-  FaMoon,
-  FaSun,
-} from "react-icons/fa";
+import React from "react";
+import { FaCode } from "react-icons/fa"; // Puedes cambiar este ícono por el que prefieras
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark", !darkMode);
-  };
-
   return (
-    <nav className="bg-gradient-to-b from-blue-500 to-blue-700 p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <ul className="flex space-x-6 text-white text-lg">
-          <li className="hover:text-gray-300 transition">
-            <a href="/path-to-cv.pdf" download className="flex items-center">
-              <FaDownload className="mr-2" />
-              Download CV
-            </a>
-          </li>
-          <li className="hover:text-gray-300 transition">
-            <a href="#projects" className="flex items-center">
-              <FaProjectDiagram className="mr-2" />
-              Projects
-            </a>
-          </li>
-          <li className="hover:text-gray-300 transition">
-            <a href="#kubera-labs" className="flex items-center">
-              <FaFlask className="mr-2" />
-              Kubera Labs
-            </a>
-          </li>
-          <li className="hover:text-gray-300 transition">
-            <button onClick={toggleDarkMode} className="flex items-center">
-              {darkMode ? (
-                <FaSun className="mr-2" />
-              ) : (
-                <FaMoon className="mr-2" />
-              )}
-              {darkMode ? "Light Mode" : "Dark Mode"}
-            </button>
-          </li>
-        </ul>
+    <nav className="bg-gray-900 text-yellow-300 md:px-12 px-6 py-3 md:py-6 flex justify-between items-center">
+      <div className="flex items-center space-x-3">
+        <FaCode size={30} />
+        <div>
+          <h1 className="text-2xl font-semibold">Nicolás García</h1>
+          <p className="text-sm">Fullstack Developer</p>
+        </div>
       </div>
+      <ul className="flex space-x-6 text-lg">
+        <li className="hover:text-yellow-500 transition">
+          <a href="#proyectos">Proyectos</a>
+        </li>
+        <li className="hover:text-yellow-500 transition">
+          <a href="#experiencia-laboral">Experiencia Laboral</a>
+        </li>
+        <li className="hover:text-yellow-500 transition">
+          <a href="#sobre-mi">Sobre mi</a>
+        </li>
+        <li className="hover:text-yellow-500 transition">
+          <a href="#contacto">Contacto</a>
+        </li>
+      </ul>
     </nav>
   );
 };
