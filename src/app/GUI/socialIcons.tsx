@@ -25,7 +25,7 @@ const TopBar = () => {
   };
 
   return (
-    <div className="bg-gray-800 text-gray-300 dark:bg-gray-900 dark:text-gray-400">
+    <div className="bg-gray-800 text-gray-300 dark:bg-gray-900 dark:text-gray-400  border-b rounded-b-md border-white">
       <div className="container mx-auto flex justify-between items-center py-2 px-6">
         {/* Social Icons */}
         <div className="flex space-x-4">
