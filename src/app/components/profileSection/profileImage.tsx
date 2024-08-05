@@ -15,7 +15,7 @@ const ProfileImage: React.FC = () => {
 
   return (
     <div
-      className="relative flex flex-col items-center duration-300 object-fill"
+      className="relative flex flex-col items-center duration-300 object-fill w-full h-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -23,8 +23,8 @@ const ProfileImage: React.FC = () => {
         src="/me.png" // Asegúrate de poner la ruta correcta a tu imagen
         alt="Nicolás"
         width={600}
-        height={600}
-        className="hover:border-2 hover:border-green-800 hover:border-opacity-90 bg-zinc-950 bg-opacity-90 hover:bg-opacity-80 object-cover h-[15rem] w-[15rem] md:h-[33rem] md:w-[33rem] hover:duration-1000 z-20 rounded-full transition-transform duration-500 cursor-pointer"
+        height={800}
+        className="md:rounded-xl object-cover rounded-full hover:border-2 hover:border-green-800 hover:border-opacity-90 bg-gray-200 bg-opacity-90 hover:bg-opacity-80 h-3/6 w-5/6 md:h-[33rem] md:w-[33rem] hover:duration-1000 z-20 transition-transform duration-500 cursor-pointer"
         priority
       />
       {isHovered && (

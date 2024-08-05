@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className="">
+      <body className="bg-gradient-to-r from-gray-800 from-10% via-blue-950 via-30% to-gray-900 to-90%">
         <SocialIcons></SocialIcons>
         <Navbar></Navbar>
         {children}
