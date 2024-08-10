@@ -1,8 +1,31 @@
 import Image from "next/image";
+import { useState } from "react";
 
 const ProjectCard = ({ project }) => {
+  const [tilt, setTilt] = useState(0);
+
+  const handleMouseMove = (e) => {
+    const { offsetX, target } = e.nativeEvent;
+    const width = target.clientWidth;
+    const percentage = (offsetX / width) * 2 - 1; // -1 a 1
+    const tiltAmount = percentage * 30; // Ajusta la cantidad de inclinación
+    setTilt(tiltAmount);
+  };
+
+  const handleMouseLeave = () => {
+    setTilt(0); // Resetear la inclinación cuando el mouse sale del área
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div
+      className="bg-white rounded-lg shadow-md overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `rotateY(${tilt}deg)`,
+        transition: "transform 0.1s",
+      }}
+    >
       <Image
         src={project.image}
         alt={project.title}

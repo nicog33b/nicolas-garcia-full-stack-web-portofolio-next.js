@@ -20,7 +20,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 bg-gray-700 text-yellow-100 md:px-12 px-6 py-3 md:py-6 flex justify-between items-center border-b border-white rounded-b-lg z-50">
+    <nav className="bg-opacity-50 sticky top-0 bg-gray-700 text-yellow-100 md:px-12 px-6 py-3 md:py-6 flex justify-between items-center border-b border-white rounded-b-lg z-50">
       <div className=" columns-1 items-center space-x-3">
         <h1
           style={{
@@ -31,6 +31,7 @@ const Navbar = () => {
             textShadow: "0 0 10px #007bff",
             letterSpacing: 2,
           }}
+          className="hover:scale-105 cursor-pointer transition hover:text-opacity-90 hover:shadow-md hover:shadow-white p-2  delay-300"
         >
           NG DEV
         </h1>
