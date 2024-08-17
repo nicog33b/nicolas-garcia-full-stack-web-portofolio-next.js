@@ -8,9 +8,9 @@ const Welcome = () => {
   const [displayedText, setDisplayedText] = useState("");
 
   const messages = [
-    "Desarrollo Web Personalizado",
-    "Soluciones Innovadoras",
     "Proyectos a Medida",
+    "Soluciones Innovadoras",
+    "Desarrollo Web Personalizado",
     "Experiencia en React, Next.js y más",
   ];
 
@@ -40,7 +40,7 @@ const Welcome = () => {
   }, [activeMessageIndex]);
 
   return (
-    <div className="relative flex items-center justify-center h-screen text-white overflow-hidden">
+    <div className="relative flex items-center justify-center rounded-lg h-screen text-white overflow-hidden">
       <Particles
         id="tsparticles"
         options={{
@@ -59,7 +59,7 @@ const Welcome = () => {
             },
             modes: {
               bubble: {
-                distance: 400,
+                distance: 200,
                 duration: 2,
                 opacity: 0.8,
                 size: 40,
@@ -79,7 +79,7 @@ const Welcome = () => {
             },
             links: {
               color: "#ffffff",
-              distance: 22,
+              distance: 150,
               enable: true,
               opacity: 0.5,
               width: 1,
@@ -118,22 +118,21 @@ const Welcome = () => {
         className="absolute inset-0"
       />
       <motion.div
-        className="relative text-center p-15 md:p-24 rounded-lg shadow-2xl bg-gray-800 bg-opacity-80 backdrop-blur-lg  max-w-7xl"
+        className="relative text-center p-10 md:rounded-lg shadow-2xl bg-opacity-90 backdrop-blur-md md:bg-[#162447] max-w-4xl"
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1.2, opacity: 1 }}
+        animate={{ scale: 1.1, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       >
         <motion.h1
-          className="text-4xl md:text-7xl font-bold mb-6 text-blue-300"
+          className="text-5xl md:text-7xl font-extrabold  mb-4 text-yellow-100"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
         >
-                  Bienvenidos />
-                  
+          Hello, I'm Nicolás
         </motion.h1>
         <motion.h2
-          className="text-2xl md:text-5xl font-medium text-blue-100"
+          className="text-3xl md:text-5xl font-medium text-gray-200"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 1 }}
@@ -141,6 +140,37 @@ const Welcome = () => {
           {displayedText}
           {isTyping && <span className="animate-blink">|</span>}
         </motion.h2>
+        <div className="mt-2 flex justify-center space-x-4">
+          <a
+            href="https://www.linkedin.com/in/nicog33dev"
+            className="text-gray-400 hover:text-white"
+          >
+            <i className="fab fa-linkedin fa-2x"></i>
+          </a>
+          <a
+            href="https://github.com/nicog33dev"
+            className="text-gray-400 hover:text-white"
+          >
+            <i className="fab fa-github fa-2x"></i>
+          </a>
+          <a href="#contact" className="text-gray-400 hover:text-white">
+            <i className="fas fa-envelope fa-2x"></i>
+          </a>
+        </div>
+        <div className="mt-6 flex justify-center space-x-4 ">
+          <a
+            href="#contact"
+            className="px-6 py-2 bg-yellow-100 text-black font-bold rounded-full hover:bg-yellow-200 transition duration-300"
+          >
+            Hire me!
+          </a>
+          <a
+            href="#contact"
+            className="px-6 py-2 border-2 border-yellow-100 text-white hover:text-black font-bold rounded-full hover:bg-yellow-200 hover:text-white transition duration-300"
+          >
+            Contact
+          </a>
+        </div>
       </motion.div>
     </div>
   );

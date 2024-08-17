@@ -49,11 +49,11 @@ const techIcons: TechIconProps[] = [
 
 const TechIconsSection = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-4 mt-8 cursor-pointer">
+    <div className="flex flex-wrap justify-center gap-1 mt-8 cursor-pointer">
       {techIcons.map((icon) => (
         <div
           key={icon.name}
-          className="relative group p-4 rounded-lg shadow-md transition-transform duration-300 ease-in-out transform hover:scale-110"
+          className="relative group p-2 rounded-lg shadow-md transition-transform duration-300 ease-in-out transform hover:scale-110"
         >
           <icon.Icon
             size={48}

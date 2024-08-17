@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProfileImage from "./profileImage";
 
 const ProfileSection = () => {
+  const [activeMessageIndex, setActiveMessageIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  const [displayedText, setDisplayedText] = useState("");
+
+  const messages = ["Nicolás García", "Full-stack Developer"];
+
+  useEffect(() => {
+    let charIndex = 0;
+
+    const typeInterval = setInterval(() => {
+      if (charIndex < messages[activeMessageIndex].length) {
+        setDisplayedText(
+          messages[activeMessageIndex].substring(0, charIndex + 1)
+        );
+        charIndex++;
+      } else {
+        setIsTyping(false);
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          setIsTyping(true);
+          setDisplayedText("");
+          setActiveMessageIndex((prevIndex) =>
+            prevIndex === messages.length - 1 ? 0 : prevIndex + 1
+          );
+        }, 1000); // Pausa antes de pasar al siguiente mensaje
+      }
+    }, 100); // Velocidad de escritura
+
+    return () => clearInterval(typeInterval);
+  }, [activeMessageIndex]);
+
   return (
     <div
       id="div_imagen_data_profile"
@@ -12,9 +43,10 @@ const ProfileSection = () => {
       </div>
       <div className="w-full md:w-2/3 text-center md:text-left">
         <h1 className="text-emerald-100 text-3xl md:text-5xl font-bold mb-4">
-          Nicolás García
+          {displayedText}
+          {isTyping && <span className="animate-blink">|</span>}
         </h1>
-        <p className="text-lg md:text-4xl leading-tight text-slate-200 mb-6 pb-3">
+        <p className="text-lg md:text-4xl leading-tight text-slate-200 mb-6 p-2">
           Experto en desarrollo Full-Stack, combinando creatividad y técnica
           para proyectos de alto impacto. Enfocado en soluciones innovadoras y
           eficiencia operativa. <br />

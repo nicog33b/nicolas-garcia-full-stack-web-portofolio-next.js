@@ -11,7 +11,7 @@ const Navbar = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    checkMobile(); // Verifica inicialmente
+    checkMobile();
 
     window.addEventListener("resize", checkMobile);
     return () => {
@@ -20,18 +20,25 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-opacity-50 sticky top-0 bg-gray-700 text-yellow-100 md:px-12 px-6 py-3 md:py-6 flex justify-between items-center border-b border-white rounded-b-lg z-50">
-      <div className=" columns-1 items-center space-x-3">
+    <nav className="bg-opacity-30 sticky top-0 bg-gray-700 text-yellow-100 md:px-12 px-6 py-3 md:py-6 flex justify-between items-center border-b border-white rounded-b-lg z-50">
+      <div className="flex items-center space-x-3">
         <h1
           style={{
+            backgroundColor: "black",
             fontFamily: "Cinzel",
+            color: "#c3cc21",
             fontSize: "2.5rem",
-            color: "#f0f0f0",
             textAlign: "center",
-            textShadow: "0 0 10px #007bff",
+            textShadow: "0 0 15px #007bff, 0 0 25px #007bff, 0 0 35px #007bff",
             letterSpacing: 2,
+            background: "linear-gradient(135deg, #007bff 25%, #f0f0f0 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            borderRadius: "10px",
+            padding: "5px 10px",
+            boxShadow: "0px 0px 10px 2px rgba(0, 123, 255, 0.5)",
           }}
-          className="hover:scale-105 cursor-pointer transition hover:text-opacity-90 hover:shadow-md hover:shadow-white p-2  delay-300"
+          className="hover:scale-110 cursor-pointer transition-all duration-300 hover:text-opacity-90 p-2 delay-300 bg-black bg-opacity-80"
         >
           NG DEV
         </h1>
