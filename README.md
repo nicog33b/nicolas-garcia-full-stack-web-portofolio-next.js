@@ -32,3 +32,17 @@ To run this project locally, clone the repository and follow these steps:
 1. **Install dependencies:**
    ```bash
    npm install
+
+2. **Build app:**
+   ```bash
+   npm run build
+   
+3. **START APP:**
+   ```bash
+   npm run start  
+   
+# 📚 Learning and Growth
+This project is a testament to my continuous learning and passion for technology. By exploring the latest frameworks and tools, I aim to deliver exceptional web experiences.
+
+# 🤝 Let's Connect
+I'm always open to new opportunities and collaborations. Feel free to explore my [LinkedIn](https://www.linkedin.com/in/nicog33dev) or check out more of my work on [GitHub](https://github.com/nicog33b).
