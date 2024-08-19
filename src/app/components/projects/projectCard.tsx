@@ -7,18 +7,18 @@ const ProjectCard = ({ project }) => {
   const handleMouseMove = (e) => {
     const { offsetX, target } = e.nativeEvent;
     const width = target.clientWidth;
-    const percentage = (offsetX / width) * 2 - 1; // -1 a 1
-    const tiltAmount = percentage * 30; // Ajusta la cantidad de inclinación
+    const percentage = (offsetX / width) * 2 - 1;
+    const tiltAmount = percentage * 10;
     setTilt(tiltAmount);
   };
 
   const handleMouseLeave = () => {
-    setTilt(0); // Resetear la inclinación cuando el mouse sale del área
+    setTilt(0);
   };
 
   return (
     <div
-      className="bg-white rounded-lg shadow-md overflow-hidden"
+      className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -26,30 +26,42 @@ const ProjectCard = ({ project }) => {
         transition: "transform 0.1s",
       }}
     >
-      <Image
-        src={project.image}
-        alt={project.title}
-        width={400}
-        height={250}
-        className="w-full object-cover"
-      />
+      <div className="relative w-full h-56">
+        <Image
+          src={project.image}
+          alt={project.title}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-t-lg"
+        />
+      </div>
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="bg-gray-200 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <p className="text-gray-600 mb-4">{project.description}</p>
         <div className="flex space-x-4">
           <a
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded transition-colors"
           >
-            Demo
+            Live View
           </a>
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition-colors"
           >
             GitHub
           </a>

@@ -1,108 +1,178 @@
-import React from "react";
-import { montserrat } from "@/app/fonts/fonts";
+import React, { useState } from "react";
+import { montserrat, roboto } from "@/app/fonts/fonts";
 
 const Resume = () => {
-  return (
-    <div>
-      <h2
-        className={`${montserrat.className} text-4xl my-6 md:text-6xl font-extrabold text-white relative`}
-      >
-        Sobre mi
-      </h2>
+  const [isExperienceOpen, setIsExperienceOpen] = useState(true);
+  const [isEducationOpen, setIsEducationOpen] = useState(false);
+  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
 
-      <div className="w-full bg-[#f3f3ea] shadow-lg rounded-lg p-4 md:p-8 mb-8 text-gray-800">
-        <section className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Experience</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Full-Stack Developer - Kuberalabs.com
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Remoto/Presencial/Híbrido | 01/24 - Actualidad
-              </p>
-              <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                <li>
-                  Desarrollo y gestiono proyectos como parte de Kuberalabs.com,
-                  donde lidero la implementación de soluciones Full-Stack que
-                  optimizan procesos y mejoran la experiencia del usuario.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Analista - Slotting y Sistemas Tata S.A
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Remoto/Presencial/Híbrido | 02/22 - 02/23
-              </p>
-              <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                <li>
-                  Me encargué de la optimización del slotting en el almacén,
-                  asignando productos a ubicaciones estratégicas para mejorar la
-                  eficiencia en la preparación de pedidos y reducir tiempos de
-                  operación.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Desarrollador Web Freelance
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Remoto | 07/22 - Actualidad
-              </p>
-              <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                <li>
-                  Me dedico a crear soluciones web a medida para clientes,
-                  adaptándome a sus necesidades específicas y utilizando
-                  tecnologías modernas para asegurar un resultado de alta
-                  calidad.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Reparador de PC
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Presencial | 02/19 - 11/22
-              </p>
-              <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                <li>
-                  Me encargo de la reparación y mantenimiento de hardware y
-                  software, asegurando el buen funcionamiento de los sistemas y
-                  la rápida resolución de problemas técnicos.
-                </li>
-              </ul>
-            </div>
+  return (
+    <div className={`${roboto.className} text-gray-800`}>
+      <div className="w-full bg-[#f3f3ea] shadow-2xl rounded-lg p-4 md:p-8 mb-8 overflow-hidden">
+        <h2
+          className={`${montserrat.className} p-3 text-4xl my-6 md:text-6xl  text-[#2d2d2d] relative`}
+        >
+          Resumen
+        </h2>
+
+        {/* Sección de Experiencia */}
+        <section className="mb-6 md:mb-8 transition-all duration-300">
+          <div
+            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
+            onClick={() => setIsExperienceOpen(!isExperienceOpen)}
+          >
+            <span className="text-orange-500 hover:text-orange-700">
+              {isExperienceOpen ? "▾" : "▸"} Experiencia
+            </span>
+            <div
+              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
+                isExperienceOpen ? "opacity-100" : "opacity-0"
+              }`}
+            ></div>
           </div>
+          {isExperienceOpen && (
+            <div className="space-y-4">
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Full-Stack Developer - Kuberalabs.com
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Remoto/Presencial/Híbrido | 01/24 - Actualidad
+                </p>
+                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
+                  <li>
+                    Desarrollo y gestiono proyectos como parte de
+                    Kuberalabs.com, donde lidero la implementación de soluciones
+                    Full-Stack que optimizan procesos y mejoran la experiencia
+                    del usuario.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Analista - Slotting y Sistemas Tata S.A
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Remoto/Presencial/Híbrido | 02/22 - 02/23
+                </p>
+                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
+                  <li>
+                    Me encargué de la optimización del slotting en el almacén,
+                    asignando productos a ubicaciones estratégicas para mejorar
+                    la eficiencia en la preparación de pedidos y reducir tiempos
+                    de operación.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Desarrollador Web Freelance
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Remoto | 07/22 - Actualidad
+                </p>
+                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
+                  <li>
+                    Me dedico a crear soluciones web a medida para clientes,
+                    adaptándome a sus necesidades específicas y utilizando
+                    tecnologías modernas para asegurar un resultado de alta
+                    calidad.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Reparador de PC
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Presencial | 02/19 - 11/22
+                </p>
+                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
+                  <li>
+                    Me encargo de la reparación y mantenimiento de hardware y
+                    software, asegurando el buen funcionamiento de los sistemas
+                    y la rápida resolución de problemas técnicos.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
         </section>
 
-        <section className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Education</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Bachillerato en Informática - UTU
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Montevideo, Uruguay
-              </p>
+        {/* Sección de Educación */}
+        <section className="mb-6 md:mb-8 transition-all duration-300">
+          <div
+            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
+            onClick={() => setIsEducationOpen(!isEducationOpen)}
+          >
+            <span className="text-orange-500 hover:text-orange-700">
+              {isEducationOpen ? "▾" : "▸"} Educación
+            </span>
+            <div
+              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
+                isEducationOpen ? "opacity-100" : "opacity-0"
+              }`}
+            ></div>
+          </div>
+          {isEducationOpen && (
+            <div className="space-y-4">
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Bachillerato en Informática - UTU
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Montevideo, Uruguay
+                </p>
+              </div>
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Fines Redes y IT - UTU
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  Montevideo, Uruguay
+                </p>
+              </div>
+              <div>
+                <h3
+                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
+                >
+                  Certificación en Desarrollo Web - Plan Ceibal - 400hrs
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base">Online</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Fines Redes y IT - UTU
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Montevideo, Uruguay
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold">
-                Certificación en Desarrollo Web - Plan Ceibal - 400hrs
-              </h3>
-              <p className="text-gray-600 text-sm md:text-base">Online</p>
+          )}
+        </section>
+
+        {/* Sección de Cursos */}
+        <section className="mb-6 md:mb-8 transition-all duration-300">
+          <div
+            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
+            onClick={() => setIsCoursesOpen(!isCoursesOpen)}
+          >
+            <span className="text-orange-500 hover:text-orange-700">
+              {isCoursesOpen ? "▾" : "▸"} Cursos
+            </span>
+            <div
+              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
+                isCoursesOpen ? "opacity-100" : "opacity-0"
+              }`}
+            ></div>
+          </div>
+          {isCoursesOpen && (
+            <div className="space-y-4">
               <ul className="list-disc list-inside mt-2 text-sm md:text-base">
                 <li>
                   <strong>
@@ -173,7 +243,7 @@ const Resume = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          )}
         </section>
       </div>
     </div>

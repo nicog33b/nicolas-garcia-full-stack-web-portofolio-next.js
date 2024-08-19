@@ -36,7 +36,7 @@ const ProfileSection = () => {
   return (
     <div
       id="div_imagen_data_profile"
-      className="md:border md:border-white md:bg-gradient-to-r md:from-gray-700 md:via-blue-900 md:to-gray-800 bg-opacity-80 rounded-lg shadow-lg flex flex-col md:flex-row items-center w-full max-w-7xl"
+      className="md:border md:border-white md:bg-gradient-to-r md:from-gray-700 md:via-blue-900 md:to-gray-800 bg-opacity-80 rounded-lg md:shadow-lg flex flex-col md:flex-row items-center w-full max-w-7xl"
     >
       <div className="w-full md:w-1/3 mb-8 md:mb-0 md:mr-6">
         <ProfileImage />

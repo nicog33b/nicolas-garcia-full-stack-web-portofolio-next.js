@@ -20,27 +20,28 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="text-white">
+    <div className="">
       <div className="my-2 items-center">
         <section
           id="profile"
           className="container mx-auto py-12 px-4 md:py-20 md:px-8 lg:py-32"
           data-aos="fade-up"
         >
-          <div className="flex flex-col items-center justify-center gap-8 lg:gap-16">
+          <div className="w-full flex flex-col items-center justify-center gap-8 lg:gap-16">
             <ProfileSection />
-            <div className="w-full px-9">
-              <TechIconsSection />
-            </div>
           </div>
+        </section>
+
+        <section id="technologies" className="w-full px-9">
+          <TechIconsSection />
         </section>
 
         <section
           id="projects"
-          className="flex justify-center py-3"
+          className="flex justify-center  py-36"
           data-aos="fade-right"
         >
-          <div className="w-full p-8 rounded-lg">
+          <div className="w-full rounded-lg">
             <Projects></Projects>
           </div>
         </section>
@@ -50,7 +51,7 @@ export default function Home() {
           className="flex justify-center py-3"
           data-aos="fade-left"
         >
-          <div className="container w-full p-8 rounded-lg">
+          <div className="container w-full px-2 rounded-lg">
             <Resume />
           </div>
         </section>

@@ -1,0 +1,22 @@
+.projects-section {
+  background-color: #f7f3ef;
+  padding: 3rem 1rem;
+}
+
+.projects-title {
+  color: #d3a569;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.my-slider {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.my-slider::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

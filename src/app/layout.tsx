@@ -13,7 +13,7 @@ export default function RootLayout({
     <html>
       <body className="bg-gradient-to-r from-gray-800 from-10% via-blue-950 via-30% to-gray-900 to-90% overflow-x-hidden">
         <SocialIcons />
-        <Navbar />
+
         <div className="w-full">{children}</div>
         <Footer />
       </body>

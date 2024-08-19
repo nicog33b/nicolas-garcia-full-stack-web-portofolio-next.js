@@ -1,3 +1,9 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   FaReact,
   FaJsSquare,
@@ -18,7 +24,6 @@ import {
   SiDotnet,
   SiFigma,
 } from "react-icons/si";
-
 import { TbBrandReactNative } from "react-icons/tb";
 
 interface TechIconProps {
@@ -43,29 +48,83 @@ const techIcons: TechIconProps[] = [
   { name: "MongoDB", Icon: SiMongodb },
   { name: ".NET", Icon: SiDotnet },
   { name: "Figma", Icon: SiFigma },
-  { name: "React native", Icon: TbBrandReactNative },
+  { name: "React Native", Icon: TbBrandReactNative },
   // ... más íconos de tecnologías
 ];
 
-const TechIconsSection = () => {
+const TechCarousel: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const settings = {
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1500,
+    autoplaySpeed: 1000, // Ajustado para que no sea tan rápido
+    cssEase: "linear",
+    pauseOnHover: false, // Pausa el carrusel cuando pasas el mouse
+    arrows: false,
+    dots: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 9,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplaySpeed: 400,
+        },
+      },
+    ],
+  };
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Ajusta este valor según tus necesidades
+    };
+
+    checkIsMobile(); // Verifica inmediatamente
+    window.addEventListener("resize", checkIsMobile);
+
+    // Limpia el evento cuando el componente se desmonte
+    return () => {
+      window.removeEventListener("resize", checkIsMobile);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-wrap justify-center gap-1 mt-8 cursor-pointer">
-      {techIcons.map((icon) => (
-        <div
-          key={icon.name}
-          className="relative group p-2 rounded-lg shadow-md transition-transform duration-300 ease-in-out transform hover:scale-110"
-        >
-          <icon.Icon
-            size={48}
-            className="text-gray-500 group-hover:text-gray-900"
-          />
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {icon.name}
-          </span>
-        </div>
-      ))}
+    <div className="w-full mx-auto my-0 py-2">
+      <Slider {...settings}>
+        {techIcons.map((icon, index) => (
+          <div
+            key={index}
+            className="flex justify-center items-center focus:outline-none transform transition-transform duration-500 hover:scale-110"
+          >
+            <div className="relative group">
+              <icon.Icon
+                size={isMobile ? "69" : "96"}
+                className="cursor-pointer text-gray-500 group-hover:text-white hover:shadow-sm shadow-zinc-400 p-2 transition-colors duration-300 ease-in-out"
+              />
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };
 
-export default TechIconsSection;
+export default TechCarousel;
