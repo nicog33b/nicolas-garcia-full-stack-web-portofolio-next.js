@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { tns } from "tiny-slider";
 import ProjectCard from "./projectCard";
 import "tiny-slider/dist/tiny-slider.css";
@@ -55,12 +54,17 @@ const projects = [
   },
 ];
 
+
+
 export default function Projects() {
   const sliderRef = useRef(null);
+  const [sliderInstance, setSliderInstance] = useState(null); // Nuevo estado
+  const [currentSlide, setCurrentSlide] = useState(1)
+
 
   useEffect(() => {
     if (sliderRef.current) {
-      tns({
+      const slider = tns({
         container: sliderRef.current,
         items: 1,
         slideBy: 1,
@@ -69,6 +73,7 @@ export default function Projects() {
         nav: false,
         arrowKeys: true,
         autoplay: false,
+        startIndex:currentSlide,
         responsive: {
           640: {
             items: 1,
@@ -81,9 +86,12 @@ export default function Projects() {
           },
         },
       });
+      setSliderInstance(slider); // Guardar la instancia del slider
     }
   }, []);
 
+
+  console.log(document.getElementById(`tns-item${currentSlide }`));
   return (
     <section
       id="projects"
@@ -108,10 +116,16 @@ export default function Projects() {
         ))}
       </div>
       <div className="flex justify-center mt-8 space-x-4">
-        <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">
+        <button
+          onClick={() => sliderInstance.goTo("prev")} // Usar la instancia del slider
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+        >
           &#8592;
         </button>
-        <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">
+        <button
+          onClick={() => sliderInstance.goTo("next")} // Usar la instancia del slider
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+        >
           &#8594;
         </button>
       </div>

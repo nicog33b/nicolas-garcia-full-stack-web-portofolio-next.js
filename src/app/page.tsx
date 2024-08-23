@@ -9,6 +9,7 @@ import TechIconsSection from "./components/technologiesProfile/technologies";
 import Resume from "./components/resume/resume";
 import Welcome from "./components/welcome/welcome";
 import Projects from "./components/projects/projects";
+import Contact from "./components/contact/contact";
 
 export default function Home() {
   useEffect(() => {
@@ -54,6 +55,10 @@ export default function Home() {
           <div className="container w-full px-2 rounded-lg">
             <Resume />
           </div>
+        </section>
+
+        <section id="contact">
+          <Contact></Contact>
         </section>
       </div>
     </div>

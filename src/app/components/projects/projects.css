@@ -20,3 +20,23 @@
 .my-slider::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
+
+
+/* Estilos específicos para un slide en particular (ej. el segundo) */
+.my-slider .tns-slide:nth-child(2) {
+  background-color: #ffcc00; /* Cambia el fondo del segundo slide */
+  border: 2px solid #000; /* Agrega un borde negro al segundo slide */
+}
+
+/* Estilos para el slide activo */
+.my-slider .tns-slide-active {
+  transform: scale(1.0); /* Escala el slide activo para destacarlo */
+  transition: transform 0.3s ease; /* Añade una transición suave */
+  
+}
+
+/* Estilos adicionales para un slide destacado (por ejemplo, el segundo) */
+.highlight-slide {
+  border: 3px solid #4caf50;
+  background-color: #e0f7fa;
+}

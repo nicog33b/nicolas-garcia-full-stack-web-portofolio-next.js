@@ -18,7 +18,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div
-      className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      className="bg-[#f5f5f5] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -32,28 +32,28 @@ const ProjectCard = ({ project }) => {
           alt={project.title}
           layout="fill"
           objectFit="cover"
-          className="rounded-t-lg"
+          className="rounded-t-xl"
         />
       </div>
-      <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+      <div className="p-6">
+        <h3 className="text-2xl font-bold mb-3 text-gray-900">{project.title}</h3>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-gray-200 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded"
+              className="bg-gray-300 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
-        <p className="text-gray-600 mb-4">{project.description}</p>
+        <p className="text-gray-700 mb-6">{project.description}</p>
         <div className="flex space-x-4">
           <a
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded transition-colors"
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-6 rounded-full transition-colors"
           >
             Live View
           </a>
@@ -61,7 +61,7 @@ const ProjectCard = ({ project }) => {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition-colors"
+            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-full transition-colors"
           >
             GitHub
           </a>
