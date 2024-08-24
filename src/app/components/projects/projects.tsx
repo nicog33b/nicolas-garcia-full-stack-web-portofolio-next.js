@@ -66,6 +66,7 @@ export default function Projects() {
     if (sliderRef.current) {
       const slider = tns({
         container: sliderRef.current,
+        center:true,
         items: 1,
         slideBy: 1,
         mode: "carousel",

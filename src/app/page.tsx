@@ -14,7 +14,7 @@ import Contact from "./components/contact/contact";
 export default function Home() {
   useEffect(() => {
     AOS.init({
-      duration: 900, // Duración de la animación
+      duration: 1100, // Duración de la animación
       easing: "ease-in-out", // Efecto de suavizado
       once: false, // Si la animación debe ocurrir solo una vez
     });
@@ -57,7 +57,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact">
+        <section id="contact"
+            data-aos="fade-right"
+            >
           <Contact></Contact>
         </section>
       </div>

@@ -1,62 +1,71 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
+import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa';
+import { MdMessage } from 'react-icons/md';
 
-const Contact = () => {
+const ContactForm = () => {
   return (
-    <div className="bg-beige min-h-screen flex items-center justify-center">
-      <div className="container mx-auto p-6 flex flex-col md:flex-row items-center justify-between">
-        {/* Formulario de contacto */}
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full">
-          <h2 className="text-3xl font-bold text-navy mb-6">Contact me</h2>
-          <form action="#" method="POST">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name :</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Your name"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email :</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Your email"
-              />
-            </div>
-            <div className="mb-6">
-              <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">Message :</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Your message"
-              />
-            </div>
-            <div className="flex items-center justify-between">
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="bg-white shadow-xl rounded-lg overflow-hidden md:max-w-3xl w-full flex flex-col md:flex-row">
+        <div className="w-full md:w-2/3">
+          <div className="bg-transparent text-white text-center p-6">
+            <h2 className="text-3xl font-extrabold mb-2 text-zinc-900  ">Contactame</h2>
+            <p className="text-zinc-600 font-bold">¿Tienes una idea en mente? Hablemos y hagámosla realidad.</p>
+          </div>
+          <div className="p-6">
+            <form className="space-y-4">
+              <div className="flex items-center border-b-2 border-blue-600 py-2">
+                <FaUser className="text-blue-600 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Nombre Completo"
+                  className="w-full px-3 py-2 outline-none"
+                />
+              </div>
+              <div className="flex items-center border-b-2 border-blue-600 py-2">
+                <FaEnvelope className="text-blue-600 mr-2" />
+                <input
+                  type="email"
+                  placeholder="Correo Electrónico"
+                  className="w-full px-3 py-2 outline-none"
+                />
+              </div>
+              <div className="flex items-center border-b-2 border-blue-600 py-2">
+                <FaPhone className="text-blue-600 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Número de Teléfono"
+                  className="w-full px-3 py-2 outline-none"
+                />
+              </div>
+              <div className="flex items-center border-b-2 border-blue-600 py-2">
+                <MdMessage className="text-blue-600 mr-2" />
+                <textarea
+                  placeholder="Tu Mensaje"
+                  className="w-full px-3 py-2 outline-none h-24 resize-none"
+                ></textarea>
+              </div>
               <button
                 type="submit"
-                className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition duration-300"
               >
-                Submit
+                Enviar Mensaje
               </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-
-                   
-        <div className="hidden md:block md:w-1/2">
-          <Image width={1200} height={1200} src="/path-to-your-image.jpg" alt="Contact Image" className="rounded-lg shadow-lg" />
+        <div className="w-full md:w-1/3 flex items-center">
+          <Image
+          width={900}
+          height={900}
+            src="/contactimage.jpg" 
+            alt="Contact Us"
+            className="w-full h-full object-cover rounded-r-lg"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default Contact;
+export default ContactForm;
