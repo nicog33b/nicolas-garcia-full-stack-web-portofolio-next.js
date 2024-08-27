@@ -4,69 +4,23 @@ import ProjectCard from "./projectCard";
 import "tiny-slider/dist/tiny-slider.css";
 import { montserrat, roboto } from "@/app/fonts/fonts";
 import "./projects.css";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
-const projects = [
-  {
-    id: 1,
-    title: "Join",
-    description: "Group management tool to optimize workflows.",
-    image: "/path/to/image1.jpg", // Reemplaza con la ruta de la imagen
-    demo: "https://example.com/join",
-    github: "https://github.com/your-repo/join",
-    tags: ["JavaScript", "Backend", "HTML", "CSS"],
-  },
-  {
-    id: 2,
-    title: "Pokedex",
-    description: "A collection and description of all 898 Pokémon.",
-    image: "/path/to/image2.jpg",
-    demo: "https://example.com/pokedex",
-    github: "https://github.com/your-repo/pokedex",
-    tags: ["JavaScript", "API", "HTML", "CSS"],
-  },
-  {
-    id: 3,
-    title: "Sharkie",
-    description: "JavaScript based jump-and-run game.",
-    image: "/path/to/image3.jpg",
-    demo: "https://example.com/sharkie",
-    github: "https://github.com/your-repo/sharkie",
-    tags: ["JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: 4,
-    title: "Portfolio 2022",
-    description: "My portfolio website, you're probably looking at right now.",
-    image: "/path/to/image4.jpg",
-    demo: "https://example.com/portfolio-2022",
-    github: "https://github.com/your-repo/portfolio-2022",
-    tags: ["WebGL", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: 5,
-    title: "Jelly Battle",
-    description:
-      "Play as Jelly and fight against three other Jellys in a multiplayer free-for-all game.",
-    image: "/path/to/image5.jpg",
-    demo: "https://example.com/jelly-battle",
-    github: "https://github.com/your-repo/jelly-battle",
-    tags: ["WebGL", "JavaScript", "Socket.IO", "HTML", "CSS"],
-  },
-];
+//objeto con todos los proyectos.
+import { dataProject } from "@/app/services/dataProject";
 
 
 
 export default function Projects() {
   const sliderRef = useRef(null);
   const [sliderInstance, setSliderInstance] = useState(null); // Nuevo estado
-  const [currentSlide, setCurrentSlide] = useState(1)
+  const [projects, setProjects] = useState(dataProject)
 
 
   useEffect(() => {
     if (sliderRef.current) {
       const slider = tns({
         container: sliderRef.current,
-        center:true,
         items: 1,
         slideBy: 1,
         mode: "carousel",
@@ -74,7 +28,6 @@ export default function Projects() {
         nav: false,
         arrowKeys: true,
         autoplay: false,
-        startIndex:currentSlide,
         responsive: {
           640: {
             items: 1,
@@ -91,8 +44,6 @@ export default function Projects() {
     }
   }, []);
 
-
-  console.log(document.getElementById(`tns-item${currentSlide }`));
   return (
     <section
       id="projects"
@@ -109,7 +60,10 @@ export default function Projects() {
       >
         Proyectos
       </h2>
-      <div ref={sliderRef} className="my-slider flex gap-8 justify-center">
+      <div
+        ref={sliderRef}
+        className="my-slider flex gap-4 justify-center py-24"
+      >
         {projects.map((project) => (
           <div key={project.id} className="w-full md:w-1/3">
             <ProjectCard project={project} />
@@ -119,15 +73,17 @@ export default function Projects() {
       <div className="flex justify-center mt-8 space-x-4">
         <button
           onClick={() => sliderInstance.goTo("prev")} // Usar la instancia del slider
-          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105 flex items-center"
         >
-          &#8592;
+          <AiOutlineLeft size={36} className="mr-2" />{" "}
+          {/* Icono de flecha izquierda */}
         </button>
         <button
           onClick={() => sliderInstance.goTo("next")} // Usar la instancia del slider
-          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105 flex items-center"
         >
-          &#8594;
+          <AiOutlineRight size={36} className="ml-2" />{" "}
+          {/* Icono de flecha derecha */}
         </button>
       </div>
     </section>
