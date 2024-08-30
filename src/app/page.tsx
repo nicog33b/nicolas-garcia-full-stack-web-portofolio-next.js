@@ -39,7 +39,7 @@ export default function Home() {
 
         <section
           id="projects"
-          className="flex justify-center  py-36"
+          className="flex justify-center py-60 md:py-36"
           data-aos="fade-right"
         >
           <div className="w-full rounded-lg">
