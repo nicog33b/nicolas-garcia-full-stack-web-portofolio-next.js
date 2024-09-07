@@ -10,6 +10,7 @@ import Resume from "./components/resume/resume";
 import Welcome from "./components/welcome/welcome";
 import Projects from "./components/projects/projects";
 import Contact from "./components/contact/contact";
+import ContactFormWithCharacter from "./components/contact/contactWithAnimation";
 
 export default function Home() {
   useEffect(() => {
@@ -60,8 +61,10 @@ export default function Home() {
         <section id="contact"
             data-aos="fade-right"
             >
-          <Contact></Contact>
+      
+      <ContactFormWithCharacter/>
         </section>
+
       </div>
     </div>
   );
