@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
-import ContactForm from './finalContact';
+import ContactForm from './ContactForm';
 
 const ContactFormWithCharacter = () => {
   const [animationData, setAnimationData] = useState(null);
