@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./GUI/navbarTop";
-import SocialIcons from "./GUI/socialIcons";
+
 import Footer from "./GUI/footer";
 
 export default function RootLayout({

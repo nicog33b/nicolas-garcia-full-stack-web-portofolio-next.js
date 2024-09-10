@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 
-const ProjectCard = ({ project, imageIndex }) => {
+const ProjectCard = ({ project, imageIndex }:any) => {
   const [tilt, setTilt] = useState(0);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e:any) => {
     const { offsetX, target } = e.nativeEvent;
     const width = target.clientWidth;
     const percentage = (offsetX / width) * 2 - 1;
@@ -44,7 +44,7 @@ const ProjectCard = ({ project, imageIndex }) => {
             {project.title}
           </h3>
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag, index) => (
+            {project.tags.map((tag:any, index:any) => (
               <span
                 key={index}
                 className="bg-gray-300 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full"

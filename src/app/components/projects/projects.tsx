@@ -1,30 +1,27 @@
-'use client'
+'use client';
 
-import React, { useEffect, useRef, useState } from 'react'
-import { tns } from 'tiny-slider'
-import ProjectCard from './projectCard'
-import ProjectCardMobile from './projectCardMobile'
-import 'tiny-slider/dist/tiny-slider.css'
-import { montserrat, roboto } from '@/app/fonts/fonts'
-import './projects.css'
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-import { dataProject } from '@/app/services/dataProject'
+import React, { useEffect, useRef, useState } from 'react';
+import { tns, TinySliderInstance } from 'tiny-slider';
+import ProjectCard from './projectCard';
+import ProjectCardMobile from './projectCardMobile';
+import 'tiny-slider/dist/tiny-slider.css';
+import { montserrat, roboto } from '@/app/fonts/fonts';
+import './projects.css';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { dataProject } from '@/app/services/dataProject';
+import useMedia from 'use-media';
 
 export default function Projects() {
-  const sliderRef = useRef(null)
-  const [sliderInstance, setSliderInstance] = useState(null)
-  const [projects, setProjects] = useState(dataProject)
-  const [imageIndexes, setImageIndexes] = useState(projects.map(() => 0))
-  const [delayIfMobile, setDelayIfMobile] = useState(0)
-  const [isClient, setIsClient] = useState(false)
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [sliderInstance, setSliderInstance] = useState<TinySliderInstance | null>(null);
+  const [projects, setProjects] = useState(dataProject);
+  const [imageIndexes, setImageIndexes] = useState(projects.map(() => 0));
+  const [delayIfMobile, setDelayIfMobile] = useState(3000);
+
+  const isMobile = typeof window !== 'undefined' ? useMedia({ maxWidth: '640px' }) : false;
 
   useEffect(() => {
-    // Este efecto asegura que el código solo se ejecuta en el cliente
-    setIsClient(true)
-  }, [])
-
-  useEffect(() => {
-    if (isClient && sliderRef.current) {
+    if (sliderRef.current && typeof window !== 'undefined') {
       const slider = tns({
         container: sliderRef.current,
         items: 1,
@@ -41,29 +38,28 @@ export default function Projects() {
           900: { items: 2 },
           1200: { items: 3 },
         },
-      })
-      setSliderInstance(slider)
+      });
+      setSliderInstance(slider);
     }
-  }, [isClient])
+  }, []);
 
   useEffect(() => {
-    if (isClient) {
-      const isMobile = window.innerWidth <= 640
-      setDelayIfMobile(isMobile ? 2000 : 3000)
+    if (typeof window !== 'undefined') {
+      setDelayIfMobile(isMobile ? 2000 : 3000);
     }
-  }, [isClient])
+  }, [isMobile]);
 
   useEffect(() => {
-    if (isClient) {
+    if (typeof window !== 'undefined') {
       const intervalId = setInterval(() => {
         setImageIndexes((prevIndexes) =>
           prevIndexes.map((index, i) => (index + 1) % projects[i].images.length)
-        )
-      }, delayIfMobile)
+        );
+      }, delayIfMobile);
 
-      return () => clearInterval(intervalId)
+      return () => clearInterval(intervalId);
     }
-  }, [projects, delayIfMobile, isClient])
+  }, [projects, delayIfMobile]);
 
   return (
     <section
@@ -88,7 +84,7 @@ export default function Projects() {
         >
           {projects.map((project, i) => (
             <div key={project.id} className="w-full md:w-1/3 px-2">
-              {isClient && (window.innerWidth <= 640) ? (
+              {isMobile ? (
                 <ProjectCardMobile project={project} imageIndex={imageIndexes[i]} />
               ) : (
                 <ProjectCard project={project} imageIndex={imageIndexes[i]} />
@@ -106,7 +102,7 @@ export default function Projects() {
           </button>
           <button
             onClick={() => sliderInstance && sliderInstance.goTo('next')}
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 flex items-center shadow-lg"
+            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 flex items=center shadow-lg"
           >
             <span className="sr-only md:not-sr-only">Siguiente</span>
             <AiOutlineRight size={24} className="ml-2" />
@@ -114,5 +110,5 @@ export default function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }

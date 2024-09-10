@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AiFillGithub, AiOutlineLink } from 'react-icons/ai'
 
-export default function ProjectCardMobile({ project, imageIndex }) {
+export default function ProjectCardMobile({ project, imageIndex }:any) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center space-y-4 border border-gray-100">
       <div className="relative w-full h-48 overflow-hidden rounded-lg">

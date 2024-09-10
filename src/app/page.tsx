@@ -1,5 +1,6 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+
+import React, { useEffect, useState, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,17 +9,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SeccionPerfil from "./components/profileSection/profileSection";
 import SeccionTecnologias from "./components/technologiesProfile/technologies";
 import Curriculum from "./components/resume/resume";
-import Bienvenida from "./components/welcome/welcome";
 import Proyectos from "./components/projects/projects";
-import FormularioContacto from "./components/contact/ContactForm";
 import FormularioContactoConPersonaje from "./components/contact/contactWithAnimation";
 
 // Icons
 import { ChevronUpIcon } from 'lucide-react';
+import ProjectsNoSSR from "./components/projects/projectNoSsr";
+import ContactWithAnimationNoSsr from "./components/contact/contactWithAnimationNoSsr";
 
 export default function Inicio() {
   const [seccionActiva, setSeccionActiva] = useState('perfil');
   const [mostrarScrollArriba, setMostrarScrollArriba] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null); // Tipo de la referencia
 
   useEffect(() => {
     AOS.init({
@@ -28,36 +30,47 @@ export default function Inicio() {
     });
 
     const manejarScroll = () => {
-      const posicionScroll = window.scrollY;
-      const alturaVentana = window.innerHeight;
+      if (scrollRef.current) {
+        const posicionScroll = scrollRef.current.scrollTop;
+        const alturaVentana = scrollRef.current.clientHeight;
 
-      // Determinar sección activa
-      const secciones = ['perfil', 'tecnologias', 'proyectos', 'curriculum', 'contacto'];
-      for (const seccion of secciones) {
-        const elemento = document.getElementById(seccion);
-        if (elemento) {
-          const { top, bottom } = elemento.getBoundingClientRect();
-          if (top <= alturaVentana / 2 && bottom >= alturaVentana / 2) {
-            setSeccionActiva(seccion);
-            break;
+        // Determinar sección activa
+        const secciones = ['perfil', 'tecnologias', 'proyectos', 'curriculum', 'contacto'];
+        for (const seccion of secciones) {
+          const elemento = document.getElementById(seccion);
+          if (elemento) {
+            const { top, bottom } = elemento.getBoundingClientRect();
+            if (top <= alturaVentana / 2 && bottom >= alturaVentana / 2) {
+              setSeccionActiva(seccion);
+              break;
+            }
           }
         }
-      }
 
-      // Mostrar/ocultar botón de scroll hacia arriba
-      setMostrarScrollArriba(posicionScroll > alturaVentana / 2);
+        // Mostrar/ocultar botón de scroll hacia arriba
+        setMostrarScrollArriba(posicionScroll > alturaVentana / 2);
+      }
+    };
+
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener('scroll', manejarScroll);
     }
 
-    window.addEventListener('scroll', manejarScroll);
-    return () => window.removeEventListener('scroll', manejarScroll);
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener('scroll', manejarScroll);
+      }
+    };
   }, []);
 
   const scrollArriba = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
+    <div ref={scrollRef} className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-y-scroll">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm">
         <ul className="flex justify-center space-x-6 py-4">
           {['Perfil', 'Tecnologias', 'Proyectos', 'Curriculum', 'Contacto'].map((item) => (
@@ -112,7 +125,7 @@ export default function Inicio() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Proyectos />
+            <ProjectsNoSSR/>
           </motion.div>
         </section>
 
@@ -142,7 +155,7 @@ export default function Inicio() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <FormularioContactoConPersonaje />
+            <ContactWithAnimationNoSsr />
           </motion.div>
         </section>
       </main>

@@ -94,7 +94,7 @@ export default function ProfileSection() {
   );
 }
 
-function SocialLink({ href, icon, label, bgColor, hoverColor }) {
+function SocialLink({ href, icon, label, bgColor, hoverColor }:any) {
   return (
     <a
       href={href}

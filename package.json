@@ -29,7 +29,8 @@
     "three": "^0.167.1",
     "tiny-slider": "^2.9.4",
     "tsparticles": "^3.5.0",
-    "tsparticles-engine": "^2.12.0"
+    "tsparticles-engine": "^2.12.0",
+    "use-media": "^1.5.0"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
