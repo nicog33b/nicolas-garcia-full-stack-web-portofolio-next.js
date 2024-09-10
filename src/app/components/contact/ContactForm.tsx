@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { IoReload } from 'react-icons/io5';
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
@@ -104,6 +105,12 @@ export default function ContactForm() {
             type="submit"
             className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md bg-gray-200 text-zinc-900 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
             disabled={isSubmitting}
+            onClick={()=> setFormState({
+              name: '',
+              email: '',
+              subject: '',
+              message: '',
+            })}
           >
             {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
           </button>

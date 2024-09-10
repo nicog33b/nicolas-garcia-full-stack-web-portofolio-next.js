@@ -1,253 +1,140 @@
-import React, { useState } from "react";
-import { montserrat, roboto } from "@/app/fonts/fonts";
+import { HiDownload } from "react-icons/hi"
+import { useState } from "react"
 
-const Resume = () => {
-  const [isExperienceOpen, setIsExperienceOpen] = useState(true);
-  const [isEducationOpen, setIsEducationOpen] = useState(false);
-  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+export default function Component() {
+  const [openSection, setOpenSection] = useState('experience')
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? '' : section)
+  }
+
+  const SectionHeader = ({ title, isOpen, onClick }: { title: string, isOpen: boolean, onClick: () => void }) => (
+    <div
+      className="flex items-center justify-between text-2xl font-bold mb-6 cursor-pointer group"
+      onClick={onClick}
+    >
+      <span className="text-orange-500 group-hover:text-orange-700 transition-colors duration-200">
+        {isOpen ? "▾" : "▸"} {title}
+      </span>
+      <div
+        className={`w-16 h-1 bg-orange-500 rounded-full transition-all duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 w-0"
+        }`}
+      ></div>
+    </div>
+  )
+
+  const ExperienceItem = ({ title, company, period, description }: { title: string, company: string, period: string, description: string }) => (
+    <div className="mb-6">
+      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+      <p className="text-gray-600 text-sm">{company} | {period}</p>
+      <p className="mt-2 text-gray-700">{description}</p>
+    </div>
+  )
+
+  const EducationItem = ({ title, institution, location }: { title: string, institution: string, location: string }) => (
+    <div className="mb-4">
+      <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+      <p className="text-gray-600 text-sm">{institution}, {location}</p>
+    </div>
+  )
 
   return (
-    <div className={`${roboto.className} text-gray-800`}>
-      <div className="w-full bg-[#f3f3ea] shadow-2xl rounded-lg p-4 md:p-8 mb-8 overflow-hidden">
-        <h2
-          className={`${montserrat.className} p-3 text-4xl my-6 md:text-6xl  text-[#2d2d2d] relative`}
-        >
+    <div className="min-h-screen p-8 font-sans">
+      <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-lg p-8 mb-8">
+        <h2 className="text-5xl font-bold mb-12 text-gray-800 border-b-4 border-orange-500 pb-4">
           Resumen
         </h2>
 
-        {/* Sección de Experiencia */}
-        <section className="mb-6 md:mb-8 transition-all duration-300">
-          <div
-            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
-            onClick={() => setIsExperienceOpen(!isExperienceOpen)}
-          >
-            <span className="text-orange-500 hover:text-orange-700">
-              {isExperienceOpen ? "▾" : "▸"} Experiencia
-            </span>
-            <div
-              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
-                isExperienceOpen ? "opacity-100" : "opacity-0"
-              }`}
-            ></div>
-          </div>
-          {isExperienceOpen && (
-            <div className="space-y-4">
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Full-Stack Developer - Kuberalabs.com
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Remoto/Presencial/Híbrido | 01/24 - Actualidad
-                </p>
-                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                  <li>
-                    Desarrollo y gestiono proyectos como parte de
-                    Kuberalabs.com, donde lidero la implementación de soluciones
-                    Full-Stack que optimizan procesos y mejoran la experiencia
-                    del usuario.
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Analista - Slotting y Sistemas Tata S.A
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Remoto/Presencial/Híbrido | 02/22 - 02/23
-                </p>
-                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                  <li>
-                    Me encargué de la optimización del slotting en el almacén,
-                    asignando productos a ubicaciones estratégicas para mejorar
-                    la eficiencia en la preparación de pedidos y reducir tiempos
-                    de operación.
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Desarrollador Web Freelance
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Remoto | 07/22 - Actualidad
-                </p>
-                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                  <li>
-                    Me dedico a crear soluciones web a medida para clientes,
-                    adaptándome a sus necesidades específicas y utilizando
-                    tecnologías modernas para asegurar un resultado de alta
-                    calidad.
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Reparador de PC
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Presencial | 02/19 - 11/22
-                </p>
-                <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                  <li>
-                    Me encargo de la reparación y mantenimiento de hardware y
-                    software, asegurando el buen funcionamiento de los sistemas
-                    y la rápida resolución de problemas técnicos.
-                  </li>
-                </ul>
-              </div>
+        <section className="mb-12">
+          <SectionHeader
+            title="Experiencia"
+            isOpen={openSection === 'experience'}
+            onClick={() => toggleSection('experience')}
+          />
+          {openSection === 'experience' && (
+            <div className="space-y-6">
+              <ExperienceItem
+                title="Full-Stack Developer"
+                company="Kuberalabs.com"
+                period="01/24 - Actualidad"
+                description="Desarrollo y gestiono proyectos como parte de Kuberalabs.com, donde lidero la implementación de soluciones Full-Stack que optimizan procesos y mejoran la experiencia del usuario."
+              />
+              <ExperienceItem
+                title="Analista - Slotting y Sistemas"
+                company="Tata S.A"
+                period="02/22 - 02/23"
+                description="Me encargué de la optimización del slotting en el almacén, asignando productos a ubicaciones estratégicas para mejorar la eficiencia en la preparación de pedidos y reducir tiempos de operación."
+              />
+              <ExperienceItem
+                title="Desarrollador Web Freelance"
+                company="Autónomo"
+                period="07/22 - Actualidad"
+                description="Me dedico a crear soluciones web a medida para clientes, adaptándome a sus necesidades específicas y utilizando tecnologías modernas para asegurar un resultado de alta calidad."
+              />
             </div>
           )}
         </section>
 
-        {/* Sección de Educación */}
-        <section className="mb-6 md:mb-8 transition-all duration-300">
-          <div
-            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
-            onClick={() => setIsEducationOpen(!isEducationOpen)}
-          >
-            <span className="text-orange-500 hover:text-orange-700">
-              {isEducationOpen ? "▾" : "▸"} Educación
-            </span>
-            <div
-              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
-                isEducationOpen ? "opacity-100" : "opacity-0"
-              }`}
-            ></div>
-          </div>
-          {isEducationOpen && (
+        <section className="mb-12">
+          <SectionHeader
+            title="Educación"
+            isOpen={openSection === 'education'}
+            onClick={() => toggleSection('education')}
+          />
+          {openSection === 'education' && (
             <div className="space-y-4">
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Bachillerato en Informática - UTU
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Montevideo, Uruguay
-                </p>
-              </div>
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Fines Redes y IT - UTU
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Montevideo, Uruguay
-                </p>
-              </div>
-              <div>
-                <h3
-                  className={`${montserrat.className} text-lg md:text-xl font-semibold`}
-                >
-                  Certificación en Desarrollo Web - Plan Ceibal - 400hrs
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">Online</p>
-              </div>
+              <EducationItem
+                title="Bachillerato en Informática"
+                institution="UTU"
+                location="Montevideo, Uruguay"
+              />
+              <EducationItem
+                title="Fines Redes y IT"
+                institution="UTU"
+                location="Montevideo, Uruguay"
+              />
+              <EducationItem
+                title="Certificación en Desarrollo Web"
+                institution="Plan Ceibal - 400hrs"
+                location="Online"
+              />
             </div>
           )}
         </section>
 
-        {/* Sección de Cursos */}
-        <section className="mb-6 md:mb-8 transition-all duration-300">
-          <div
-            className={`flex items-center justify-between ${montserrat.className} text-xl md:text-2xl font-bold mb-4 cursor-pointer`}
-            onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-          >
-            <span className="text-orange-500 hover:text-orange-700">
-              {isCoursesOpen ? "▾" : "▸"} Cursos
-            </span>
-            <div
-              className={`w-8 h-1 bg-gray-300 rounded-full transition-all duration-300 ${
-                isCoursesOpen ? "opacity-100" : "opacity-0"
-              }`}
-            ></div>
-          </div>
-          {isCoursesOpen && (
-            <div className="space-y-4">
-              <ul className="list-disc list-inside mt-2 text-sm md:text-base">
-                <li>
-                  <strong>
-                    React Native: Aplicaciones nativas para IOS y Android
-                  </strong>{" "}
-                  - Fernando Herrera
-                </li>
-                <li>
-                  <strong>
-                    Cómo implementar un embudo de ventas en tu marca personal
-                  </strong>{" "}
-                  - DonWeb (Expedición: jun. 2024)
-                </li>
-                <li>
-                  <strong>
-                    Tailwind CSS: El curso definitivo de diseño web moderno
-                  </strong>{" "}
-                  - Udemy (Expedición: may. 2024)
-                </li>
-                <li>
-                  <strong>Introduction to C# Programming and Unity</strong> -
-                  Coursera (Expedición: ene. 2024)
-                </li>
-                <li>
-                  <strong>CCNA: Introduction to Networks</strong> - Cisco
-                  (Expedición: nov. 2023)
-                </li>
-                <li>
-                  <strong>IT Essentials</strong> - Cisco (Expedición: nov. 2023)
-                </li>
-                <li>
-                  <strong>Building a Complete MEAN Stack Application</strong> -
-                  Coursera (Expedición: sept. 2023)
-                </li>
-                <li>
-                  <strong>
-                    Aspectos básicos del diseño de la experiencia del usuario
-                  </strong>{" "}
-                  - Google (Expedición: nov. 2022)
-                </li>
-                <li>
-                  <strong>Excel Essentials for Data Analytics</strong> -
-                  Coursera (Expedición: ago. 2022)
-                </li>
-                <li>
-                  <strong>Front-End JavaScript Frameworks: Angular</strong> -
-                  Coursera (Expedición: may. 2022)
-                </li>
-                <li>
-                  <strong>Diseñando páginas web con Bootstrap 4</strong> -
-                  Coursera (Expedición: nov. 2021)
-                </li>
-                <li>
-                  <strong>
-                    Introducción a la programación en Python I: Aprendiendo a
-                    programar con Python
-                  </strong>{" "}
-                  - Coursera (Expedición: jul. 2020)
-                </li>
-                <li>
-                  <strong>.Net Full Stack Foundation</strong> - Coursera
-                </li>
-                <li>
-                  <strong>
-                    Desarrollo full-stack Next.js - App routes y Side components
-                  </strong>{" "}
-                  - DonWeb
-                </li>
-              </ul>
-            </div>
+        <section className="mb-12">
+          <SectionHeader
+            title="Cursos"
+            isOpen={openSection === 'courses'}
+            onClick={() => toggleSection('courses')}
+          />
+          {openSection === 'courses' && (
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <li>React Native: Aplicaciones nativas para IOS y Android - Fernando Herrera</li>
+              <li>Cómo implementar un embudo de ventas en tu marca personal - DonWeb</li>
+              <li>Tailwind CSS: El curso definitivo de diseño web moderno - Udemy</li>
+              <li>Introduction to C# Programming and Unity - Coursera</li>
+              <li>CCNA: Introduction to Networks - Cisco</li>
+              <li>IT Essentials - Cisco</li>
+              <li>Building a Complete MEAN Stack Application - Coursera</li>
+              <li>Aspectos básicos del diseño de la experiencia del usuario - Google</li>
+              <li>Excel Essentials for Data Analytics - Coursera</li>
+              <li>Front-End JavaScript Frameworks: Angular - Coursera</li>
+            </ul>
           )}
         </section>
+        <div className="text-center mt-12">
+        <a
+                href="/english-cv.pdf"
+                download
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out"
+              >
+                <HiDownload className="mr-2 -ml-1 h-5 w-5" aria-hidden="true" />
+                Descargar CV
+              </a>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default Resume;
+  )
+}

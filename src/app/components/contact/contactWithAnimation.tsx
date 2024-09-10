@@ -27,7 +27,7 @@ const ContactFormWithCharacter = () => {
       </div>
 
       {/* Formulario */}
-      <div className="relative w-11/12 md:w-full bg-transparent bg-opacity-90  rounded-lg p-8 shadow-lg z-10">
+      <div className="relative w-11/12 md:w-full bg-transparent bg-opacity-90  rounded-lg p-8 z-10">
         <ContactForm />
       </div>
     </div>
