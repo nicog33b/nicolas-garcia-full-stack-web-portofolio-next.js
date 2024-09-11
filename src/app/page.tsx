@@ -71,7 +71,7 @@ export default function Inicio() {
 
   return (
     <div ref={scrollRef} className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen overflow-y-scroll">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm px-2 mx-1">
         <ul className="flex justify-center space-x-6 py-4">
           {['Perfil', 'Tecnologias', 'Proyectos', 'Curriculum', 'Contacto'].map((item) => (
             <li key={item}>
